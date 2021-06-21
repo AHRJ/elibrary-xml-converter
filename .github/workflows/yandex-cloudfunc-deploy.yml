@@ -1,0 +1,18 @@
+name: Deploy as Yandex Cloud Function
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: goodsmileduck/yandex-serverless-action@v1
+      with:
+        token: ${{ secrets.TOKEN }}
+        function_id: ${{ secrets.FUNC_ID }}
+        runtime: 'python38'
+        memory: '128'
+        entrypoint: 'main.handler'
+        source: 'elibrary-xml-converter'
+        execution_timeout: '40'
+        environment: DUMMY=1
