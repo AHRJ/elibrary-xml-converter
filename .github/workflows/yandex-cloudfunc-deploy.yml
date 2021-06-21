@@ -1,5 +1,8 @@
 name: Deploy as Yandex Cloud Function
-on: push
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   deploy:
