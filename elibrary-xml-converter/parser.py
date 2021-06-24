@@ -21,11 +21,11 @@ class ElibraryParser:
     def _issue(self) -> str:
         val = self.root.find("issue").find("number").text
         if val == "S1":
-            return "SV"
+            return "sv"
         elif val == "S2":
-            return "SK"
+            return "sk"
         elif val == "S3":
-            return "PT"
+            return "pt"
         else:
             return val
 
@@ -44,7 +44,7 @@ class ElibraryParser:
         return articles
 
     def _get_article_id(self, count):
-        return "-".join(["zzr", self._year, self._issue.zfill(2), str(count).zfill(3)])
+        return "-".join(["zzr", self._year, self._issue.zfill(2).upper(), str(count).zfill(3)])
 
     def _get_article_doi(self, entry):
         try:
