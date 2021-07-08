@@ -44,7 +44,9 @@ class ElibraryParser:
         return articles
 
     def _get_article_id(self, count):
-        return "-".join(["zzr", self._year, self._issue.zfill(2).upper(), str(count).zfill(3)])
+        return "-".join(
+            ["zzr", self._year, self._issue.zfill(2).upper(), str(count).zfill(3)]
+        )
 
     def _get_article_doi(self, entry):
         try:
@@ -80,7 +82,9 @@ class ElibraryParser:
         try:
             abstracts_xml = entry.find("abstracts").findall("abstract")
             for abstract in abstracts_xml:
-                abstracts[abstract.get("lang")] = abstract.text
+                abstracts[abstract.get("lang")] = ET.tostring(
+                    abstract, encoding="unicode", method="text"
+                )
         except:
             pass
         return abstracts
