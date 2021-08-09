@@ -4,8 +4,12 @@ from typing import Dict, List
 
 @dataclass
 class Author:
-    first_name: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
-    last_name: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
+    first_name: Dict[str, str] = field(
+        default_factory=lambda: {"RUS": None, "ENG": None}
+    )
+    last_name: Dict[str, str] = field(
+        default_factory=lambda: {"RUS": None, "ENG": None}
+    )
 
     @property
     def full_name(self):
@@ -27,7 +31,9 @@ class Article:
     title: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
     authors: List[Author] = field(default_factory=lambda: [])
     abstract: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
-    keywords: Dict[str, List[str]] = field(default_factory=lambda: {"RUS": [], "ENG": []})
+    keywords: Dict[str, List[str]] = field(
+        default_factory=lambda: {"RUS": [], "ENG": []}
+    )
 
 
 @dataclass
