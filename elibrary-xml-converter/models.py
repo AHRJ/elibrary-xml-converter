@@ -1,20 +1,16 @@
 from dataclasses import dataclass, field
 from typing import Dict, List
 
-RU = "RUS"
-EN = "ENG"
-LANGUAGES = [RU, EN]
-
 
 @dataclass
 class Author:
-    first_name: Dict[str, str] = field(default_factory=lambda: {RU: None, EN: None})
-    last_name: Dict[str, str] = field(default_factory=lambda: {RU: None, EN: None})
+    first_name: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
+    last_name: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
 
     @property
     def full_name(self):
         full_name = {}
-        for lang in LANGUAGES:
+        for lang in ["RUS", "ENG"]:
             try:
                 full_name[lang] = "".join(
                     [self.first_name[lang][0], ". ", self.last_name[lang]]
@@ -28,10 +24,10 @@ class Author:
 class Article:
     id: str = None
     doi: str = None
-    title: Dict[str, str] = field(default_factory=lambda: {RU: None, EN: None})
+    title: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
     authors: List[Author] = field(default_factory=lambda: [])
-    abstract: Dict[str, str] = field(default_factory=lambda: {RU: None, EN: None})
-    keywords: Dict[str, List[str]] = field(default_factory=lambda: {RU: [], EN: []})
+    abstract: Dict[str, str] = field(default_factory=lambda: {"RUS": None, "ENG": None})
+    keywords: Dict[str, List[str]] = field(default_factory=lambda: {"RUS": [], "ENG": []})
 
 
 @dataclass
