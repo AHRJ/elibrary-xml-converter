@@ -95,7 +95,10 @@ class ElibraryParser:
             keywords_xml = entry.find("keywords").findall("kwdGroup")
             for keyword_group in keywords_xml:
                 for keyword in keyword_group.findall("keyword"):
-                    keywords[keyword_group.get("lang")].append(keyword.text)
+                    keyword = ET.tostring(
+                        keyword, encoding="unicode", method="text"
+                    ).strip()
+                    keywords[keyword_group.get("lang")].append(keyword)
 
         except:
             pass
