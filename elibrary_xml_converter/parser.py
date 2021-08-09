@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-from models import Article, Author, Journal
+from .models import Article, Author, Journal
 
 
 class ElibraryParser:
@@ -61,7 +61,8 @@ class ElibraryParser:
         titles = {}
         title_xml = entry.find("artTitles").findall("artTitle")
         for title in title_xml:
-            titles[title.get("lang")] = title.text
+            lang = title.get("lang")
+            titles[lang] = title.text
         return titles
 
     def _get_article_authors(self, entry):
@@ -72,9 +73,11 @@ class ElibraryParser:
                 author = Author()
                 author_info = author_meta.findall("individInfo")
                 for a in author_info:
-                    author.first_name[a.get("lang")] = a.find("initials").text
-                    author.last_name[a.get("lang")] = a.find("surname").text
-
+                    lang = a.get("lang")
+                    initials = a.find("initials").text
+                    surname = a.find("surname").text
+                    author.first_name[lang] = initials
+                    author.last_name[lang] = surname
                 authors.append(author)
         except:
             pass
@@ -85,9 +88,11 @@ class ElibraryParser:
         try:
             abstracts_xml = entry.find("abstracts").findall("abstract")
             for abstract in abstracts_xml:
-                abstracts[abstract.get("lang")] = ET.tostring(
+                lang = abstract.get("lang")
+                abstract = ET.tostring(
                     abstract, encoding="unicode", method="text"
-                )
+                ).strip()
+                abstracts[lang] = abstract
         except:
             pass
         return abstracts
@@ -98,10 +103,11 @@ class ElibraryParser:
             keywords_xml = entry.find("keywords").findall("kwdGroup")
             for keyword_group in keywords_xml:
                 for keyword in keyword_group.findall("keyword"):
+                    lang = keyword_group.get("lang")
                     keyword = ET.tostring(
                         keyword, encoding="unicode", method="text"
                     ).strip()
-                    keywords[keyword_group.get("lang")].append(keyword)
+                    keywords[lang].append(keyword)
 
         except:
             pass
