@@ -4,8 +4,11 @@ from models import Article, Author, Journal
 
 
 class ElibraryParser:
-    def __init__(self, xml):
-        self.tree = ET.ElementTree(ET.fromstring(xml))
+    def __init__(self, xml, isFile=False):
+        if isFile:
+            self.tree = ET.parse(xml)
+        else:
+            self.tree = ET.ElementTree(ET.fromstring(xml))
         self.root = self.tree.getroot()
 
     def fill(self, journal: Journal):
