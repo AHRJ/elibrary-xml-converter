@@ -1,4 +1,4 @@
-from parser import ElibraryParser
+from parsers import ElibraryParser
 
 import utils
 from csv_maker import CSVMaker
