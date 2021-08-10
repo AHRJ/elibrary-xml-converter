@@ -15,7 +15,7 @@ jobs:
         function_id: ${{ secrets.FUNC_ID }}
         runtime: 'python38'
         memory: '128'
-        entrypoint: 'main.handler'
-        source: 'elibrary_xml_converter'
+        entrypoint: 'app.main.handler'
+        source: '.'
         execution_timeout: '40'
         environment: DUMMY=1

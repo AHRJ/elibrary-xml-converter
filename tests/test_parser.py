@@ -1,5 +1,5 @@
-from elibrary_xml_converter.parser import ElibraryParser
-from elibrary_xml_converter.models import Journal
+from app.parsers import ElibraryParser
+from app.models import Journal
 import pytest
 
 
