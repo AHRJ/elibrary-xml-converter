@@ -1,7 +1,7 @@
 import csv
 import io
 
-from models import Journal
+from .models import Journal
 
 
 class CSVMaker:
