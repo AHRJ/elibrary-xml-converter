@@ -17,5 +17,6 @@ jobs:
         memory: '128'
         entrypoint: 'app.main.handler'
         source: '.'
+        exclude: 'tests/'
         execution_timeout: '40'
         environment: DUMMY=1
