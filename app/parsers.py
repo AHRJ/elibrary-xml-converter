@@ -1,10 +1,12 @@
+import os
 import xml.etree.ElementTree as ET
 
 from .models import Article, Author, Journal
 
 
 class ElibraryParser:
-    def __init__(self, xml, isFile=False):
+    def __init__(self, xml):
+        isFile = os.path.isfile(xml)
         if isFile:
             self.tree = ET.parse(xml)
         else:

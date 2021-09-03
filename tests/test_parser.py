@@ -1,11 +1,12 @@
-from app.parsers import ElibraryParser
-from app.models import Journal
 import pytest
+
+from app.models import Journal
+from app.parsers import ElibraryParser
 
 
 @pytest.fixture
 def parser():
-    return ElibraryParser("tests/example.xml", isFile=True)
+    return ElibraryParser("tests/example.xml")
 
 
 @pytest.fixture
