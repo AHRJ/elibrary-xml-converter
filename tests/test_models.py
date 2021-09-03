@@ -1,5 +1,6 @@
-from app.models import Journal, Article, Author
 import pytest
+
+from app.models import Article, Author, Journal
 
 
 def test_journal_defaults():
